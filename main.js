@@ -65,7 +65,7 @@ var AppRoutingModule = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"dflex center-items center-content\">\n    <luc-avatar src=\"../assets/profile.png\" text=\"Rafael Lucini\"></luc-avatar>\n</div>\n<router-outlet></router-outlet>\n"
+module.exports = "<div class=\"dflex center-items center-content\">\n    <luc-avatar src=\"https://github.com/lucini/lucini.github.io/blob/master/assets/profile.png?raw=true\" text=\"Rafael Lucini\"></luc-avatar>\n</div>\n<router-outlet></router-outlet>\n"
 
 /***/ }),
 
