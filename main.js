@@ -41,7 +41,11 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-var routes = [{ path: 'home', component: _pages_home_home_component__WEBPACK_IMPORTED_MODULE_3__["HomeComponent"] }];
+var routes = [
+    { path: 'home', component: _pages_home_home_component__WEBPACK_IMPORTED_MODULE_3__["HomeComponent"] },
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
+    { path: '**', redirectTo: 'home' }
+];
 var AppRoutingModule = /** @class */ (function () {
     function AppRoutingModule() {
     }
@@ -125,11 +129,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/platform-browser */ "./node_modules/@angular/platform-browser/fesm5/platform-browser.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
-/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
-/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
-/* harmony import */ var _avatar_avatar_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./avatar/avatar.component */ "./src/app/avatar/avatar.component.ts");
-/* harmony import */ var _card_card_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./card/card.component */ "./src/app/card/card.component.ts");
+/* harmony import */ var _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @angular/platform-browser/animations */ "./node_modules/@angular/platform-browser/fesm5/animations.js");
+/* harmony import */ var _app_routing_module__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./app-routing.module */ "./src/app/app-routing.module.ts");
+/* harmony import */ var _app_component__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./app.component */ "./src/app/app.component.ts");
+/* harmony import */ var _avatar_avatar_component__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./avatar/avatar.component */ "./src/app/avatar/avatar.component.ts");
 /* harmony import */ var _pages_home_home_component__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./pages/home/home.component */ "./src/app/pages/home/home.component.ts");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var _components_skill_skill_module__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/skill/skill.module */ "./src/app/components/skill/skill.module.ts");
+
+
 
 
 
@@ -144,17 +152,20 @@ var AppModule = /** @class */ (function () {
     AppModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_2__["NgModule"])({
             declarations: [
-                _app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"],
-                _avatar_avatar_component__WEBPACK_IMPORTED_MODULE_5__["AvatarComponent"],
-                _card_card_component__WEBPACK_IMPORTED_MODULE_6__["CardComponent"],
-                _pages_home_home_component__WEBPACK_IMPORTED_MODULE_7__["HomeComponent"]
+                _app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"],
+                _avatar_avatar_component__WEBPACK_IMPORTED_MODULE_6__["AvatarComponent"],
+                _pages_home_home_component__WEBPACK_IMPORTED_MODULE_7__["HomeComponent"],
             ],
             imports: [
                 _angular_platform_browser__WEBPACK_IMPORTED_MODULE_1__["BrowserModule"],
-                _app_routing_module__WEBPACK_IMPORTED_MODULE_3__["AppRoutingModule"]
+                _app_routing_module__WEBPACK_IMPORTED_MODULE_4__["AppRoutingModule"],
+                _angular_platform_browser_animations__WEBPACK_IMPORTED_MODULE_3__["BrowserAnimationsModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatCardModule"],
+                _components_skill_skill_module__WEBPACK_IMPORTED_MODULE_9__["SkillModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_8__["MatGridListModule"],
             ],
             providers: [],
-            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_4__["AppComponent"]]
+            bootstrap: [_app_component__WEBPACK_IMPORTED_MODULE_5__["AppComponent"]]
         })
     ], AppModule);
     return AppModule;
@@ -233,56 +244,130 @@ var AvatarComponent = /** @class */ (function () {
 
 /***/ }),
 
-/***/ "./src/app/card/card.component.html":
-/*!******************************************!*\
-  !*** ./src/app/card/card.component.html ***!
-  \******************************************/
+/***/ "./src/app/components/skill/skill.component.html":
+/*!*******************************************************!*\
+  !*** ./src/app/components/skill/skill.component.html ***!
+  \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<div class=\"card\">\n    <hr>\n    <div class=\"card-body\">\n            LEGIO AETERNA AETERNA VICTRIX \n            ROMA O ROMA\n            LEGIO AETERNA, AETERNA VICTRIX\n            ROMA O ROMA\n            \n            SUPRA TERNA BRITANNORUM\n            VOLAT AQUILA LEGIONUM\n            LEGIO AETERNA AETERNA VICTRIX \n            ROMA O ROMA\n            A FERVENTI AESTUOSA LIBYA \n            VOLAT AQUILA LEGIONUM \n            SUPRA TERRAM BRITANNORUM\n    </div>\n</div>\n"
+module.exports = "<mat-card class=\"card-skill\">\n  <mat-card-header>\n    <mat-progress-bar mode=\"determinate\" [value]=\"skill?.percent\"></mat-progress-bar>\n    <mat-card-title>{{skill.title}}</mat-card-title>\n    <mat-card-subtitle>{{skill.subTitle}}</mat-card-subtitle>\n  </mat-card-header>\n  <img mat-card-lg-image [src]=\"skill.imgSrc\" [alt]=\"skill.title\">\n  <mat-card-content>\n    <p>\n      {{skill.description}}\n    </p>\n  </mat-card-content>\n</mat-card>"
 
 /***/ }),
 
-/***/ "./src/app/card/card.component.scss":
-/*!******************************************!*\
-  !*** ./src/app/card/card.component.scss ***!
-  \******************************************/
+/***/ "./src/app/components/skill/skill.component.scss":
+/*!*******************************************************!*\
+  !*** ./src/app/components/skill/skill.component.scss ***!
+  \*******************************************************/
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = ".card {\n  background-color: white;\n  display: flex;\n  min-height: 50px;\n  border-radius: 7px;\n  margin-top: 5px; }\n  .card-body {\n    padding: 5px; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL2x1Y2luaS9JZGVhUHJvamVjdHMvY3VycmljdWx1bS9zcmMvYXBwL2NhcmQvY2FyZC5jb21wb25lbnQuc2NzcyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiQUFBQTtFQUNJLHVCQUF1QjtFQUN2QixhQUFhO0VBQ2IsZ0JBQWdCO0VBQ2hCLGtCQUFrQjtFQUNsQixlQUFlLEVBQUE7RUFDZjtJQUNJLFlBQVksRUFBQSIsImZpbGUiOiJzcmMvYXBwL2NhcmQvY2FyZC5jb21wb25lbnQuc2NzcyIsInNvdXJjZXNDb250ZW50IjpbIi5jYXJkIHtcbiAgICBiYWNrZ3JvdW5kLWNvbG9yOiB3aGl0ZTtcbiAgICBkaXNwbGF5OiBmbGV4O1xuICAgIG1pbi1oZWlnaHQ6IDUwcHg7XG4gICAgYm9yZGVyLXJhZGl1czogN3B4O1xuICAgIG1hcmdpbi10b3A6IDVweDtcbiAgICAmLWJvZHkge1xuICAgICAgICBwYWRkaW5nOiA1cHg7XG4gICAgfVxufSJdfQ== */"
+module.exports = ".card-skill {\n  max-width: 400px; }\n\n.card-img {\n  background-size: cover; }\n\n/*# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIi9ob21lL2x1Y2luaS9JZGVhUHJvamVjdHMvY3VycmljdWx1bS9zcmMvYXBwL2NvbXBvbmVudHMvc2tpbGwvc2tpbGwuY29tcG9uZW50LnNjc3MiXSwibmFtZXMiOltdLCJtYXBwaW5ncyI6IkFBQUE7RUFDSSxnQkFBZ0IsRUFBQTs7QUFHcEI7RUFDSSxzQkFBc0IsRUFBQSIsImZpbGUiOiJzcmMvYXBwL2NvbXBvbmVudHMvc2tpbGwvc2tpbGwuY29tcG9uZW50LnNjc3MiLCJzb3VyY2VzQ29udGVudCI6WyIuY2FyZC1za2lsbCB7XG4gICAgbWF4LXdpZHRoOiA0MDBweDtcbn1cblxuLmNhcmQtaW1nIHtcbiAgICBiYWNrZ3JvdW5kLXNpemU6IGNvdmVyO1xufSJdfQ== */"
 
 /***/ }),
 
-/***/ "./src/app/card/card.component.ts":
-/*!****************************************!*\
-  !*** ./src/app/card/card.component.ts ***!
-  \****************************************/
-/*! exports provided: CardComponent */
+/***/ "./src/app/components/skill/skill.component.ts":
+/*!*****************************************************!*\
+  !*** ./src/app/components/skill/skill.component.ts ***!
+  \*****************************************************/
+/*! exports provided: SkillComponent */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CardComponent", function() { return CardComponent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SkillComponent", function() { return SkillComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _skill__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./skill */ "./src/app/components/skill/skill.ts");
 
 
-var CardComponent = /** @class */ (function () {
-    function CardComponent() {
+
+var SkillComponent = /** @class */ (function () {
+    function SkillComponent() {
     }
-    CardComponent.prototype.ngOnInit = function () {
+    SkillComponent.prototype.ngOnInit = function () {
     };
-    CardComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+    tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Input"])(),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:type", _skill__WEBPACK_IMPORTED_MODULE_2__["Skill"])
+    ], SkillComponent.prototype, "skill", void 0);
+    SkillComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
-            selector: 'luc-card',
-            template: __webpack_require__(/*! ./card.component.html */ "./src/app/card/card.component.html"),
-            styles: [__webpack_require__(/*! ./card.component.scss */ "./src/app/card/card.component.scss")]
+            selector: 'luc-skill',
+            template: __webpack_require__(/*! ./skill.component.html */ "./src/app/components/skill/skill.component.html"),
+            styles: [__webpack_require__(/*! ./skill.component.scss */ "./src/app/components/skill/skill.component.scss")]
         }),
         tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
-    ], CardComponent);
-    return CardComponent;
+    ], SkillComponent);
+    return SkillComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/components/skill/skill.module.ts":
+/*!**************************************************!*\
+  !*** ./src/app/components/skill/skill.module.ts ***!
+  \**************************************************/
+/*! exports provided: SkillModule */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SkillModule", function() { return SkillModule; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var _angular_common__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @angular/common */ "./node_modules/@angular/common/fesm5/common.js");
+/* harmony import */ var _skill_component__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./skill.component */ "./src/app/components/skill/skill.component.ts");
+/* harmony import */ var _angular_material__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @angular/material */ "./node_modules/@angular/material/esm5/material.es5.js");
+/* harmony import */ var src_app_services_skill_service__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! src/app/services/skill.service */ "./src/app/services/skill.service.ts");
+
+
+
+
+
+
+var SkillModule = /** @class */ (function () {
+    function SkillModule() {
+    }
+    SkillModule = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["NgModule"])({
+            declarations: [_skill_component__WEBPACK_IMPORTED_MODULE_3__["SkillComponent"]],
+            imports: [
+                _angular_common__WEBPACK_IMPORTED_MODULE_2__["CommonModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatCardModule"],
+                _angular_material__WEBPACK_IMPORTED_MODULE_4__["MatProgressBarModule"],
+            ],
+            exports: [
+                _skill_component__WEBPACK_IMPORTED_MODULE_3__["SkillComponent"]
+            ],
+            providers: [
+                src_app_services_skill_service__WEBPACK_IMPORTED_MODULE_5__["SkillService"],
+            ]
+        })
+    ], SkillModule);
+    return SkillModule;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/components/skill/skill.ts":
+/*!*******************************************!*\
+  !*** ./src/app/components/skill/skill.ts ***!
+  \*******************************************/
+/*! exports provided: Skill */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "Skill", function() { return Skill; });
+var Skill = /** @class */ (function () {
+    function Skill() {
+    }
+    return Skill;
 }());
 
 
@@ -296,7 +381,7 @@ var CardComponent = /** @class */ (function () {
 /*! no static exports found */
 /***/ (function(module, exports) {
 
-module.exports = "<luc-card></luc-card>"
+module.exports = "<div>\n    <mat-grid-list cols=\"2\">\n        <mat-grid-tile *ngFor=\"let skill of skills$ | async\">\n            <luc-skill matRipple [skill]=\"skill\"></luc-skill>\n        </mat-grid-tile>\n    </mat-grid-list>\n</div>"
 
 /***/ }),
 
@@ -323,12 +408,16 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "HomeComponent", function() { return HomeComponent; });
 /* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
 /* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var src_app_services_skill_service__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! src/app/services/skill.service */ "./src/app/services/skill.service.ts");
+
 
 
 var HomeComponent = /** @class */ (function () {
-    function HomeComponent() {
+    function HomeComponent(skillService) {
+        this.skillService = skillService;
     }
     HomeComponent.prototype.ngOnInit = function () {
+        this.skills$ = this.skillService.findAll();
     };
     HomeComponent = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
         Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Component"])({
@@ -336,9 +425,60 @@ var HomeComponent = /** @class */ (function () {
             template: __webpack_require__(/*! ./home.component.html */ "./src/app/pages/home/home.component.html"),
             styles: [__webpack_require__(/*! ./home.component.scss */ "./src/app/pages/home/home.component.scss")]
         }),
-        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [src_app_services_skill_service__WEBPACK_IMPORTED_MODULE_2__["SkillService"]])
     ], HomeComponent);
     return HomeComponent;
+}());
+
+
+
+/***/ }),
+
+/***/ "./src/app/services/skill.service.ts":
+/*!*******************************************!*\
+  !*** ./src/app/services/skill.service.ts ***!
+  \*******************************************/
+/*! exports provided: SkillService */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "SkillService", function() { return SkillService; });
+/* harmony import */ var tslib__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! tslib */ "./node_modules/tslib/tslib.es6.js");
+/* harmony import */ var _angular_core__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @angular/core */ "./node_modules/@angular/core/fesm5/core.js");
+/* harmony import */ var rxjs__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! rxjs */ "./node_modules/rxjs/_esm5/index.js");
+
+
+
+var SkillService = /** @class */ (function () {
+    function SkillService() {
+        this.skills = [
+            {
+                'title': 'Angular',
+                'subTitle': 'Framework Javascript',
+                'imgSrc': 'https://angular.io/assets/images/logos/angular/angular.svg',
+                'description': '',
+                'percent': 90
+            },
+            {
+                'title': 'VueJS',
+                'subTitle': 'Framework Javascript',
+                'imgSrc': 'https://upload.wikimedia.org/wikipedia/commons/9/95/Vue.js_Logo_2.svg',
+                'description': '',
+                'percent': 70
+            },
+        ];
+    }
+    SkillService.prototype.findAll = function () {
+        return Object(rxjs__WEBPACK_IMPORTED_MODULE_2__["of"])(this.skills);
+    };
+    SkillService = tslib__WEBPACK_IMPORTED_MODULE_0__["__decorate"]([
+        Object(_angular_core__WEBPACK_IMPORTED_MODULE_1__["Injectable"])({
+            providedIn: 'root'
+        }),
+        tslib__WEBPACK_IMPORTED_MODULE_0__["__metadata"]("design:paramtypes", [])
+    ], SkillService);
+    return SkillService;
 }());
 
 
